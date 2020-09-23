@@ -6,6 +6,7 @@ class Cards
 {
 private:
   int currentCard;
+  int ace;
 
 public:
   Cards();

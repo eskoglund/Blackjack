@@ -17,7 +17,7 @@ public:
   ~Player();
 
   std::string getName() const;
-  //int getSum() const;
+  int getSum() const;
   void setup();
   void keepPlaying();
 };

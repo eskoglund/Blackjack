@@ -15,10 +15,10 @@ std::string Dealer::getName() const
   return this->name;
 }
 
-// int Dealer::getSum() const
-// {
-//   return this->sum;
-// }
+int Dealer::getSum() const
+{
+  return this->sum;
+}
 
 void Dealer::setup()
 {
@@ -26,12 +26,19 @@ void Dealer::setup()
   this->game.checkScore(this->sum);
 }
 
-void Dealer::checkTotal()
+void Dealer::checkResult(int playerSum)
 {
-  this->sum += this->cards.drawCard();
-  while (this->sum <= 17 && this->sum < 21)
+  if (playerSum > 21)
+  {
+    std::cout << "Dealer wins." << std::endl;
+  }
+  else
   {
     this->sum += this->cards.drawCard();
+    while (this->sum <= 17)
+    {
+      this->sum += this->cards.drawCard();
+    }
+    this->game.checkScore(this->sum);
   }
-  this->game.checkScore(this->sum);
 }

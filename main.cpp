@@ -18,7 +18,9 @@ int main() {
   std::cout << std::endl << player.getName() << std::endl;
   player.keepPlaying();
   std::cout << std::endl << dealer.getName() << std::endl;
-  dealer.checkTotal();
+  dealer.checkResult(player.getSum());
+  Game winner(player.getSum(), dealer.getSum());
+  winner.checkWinner();
 
   return 0;
 }

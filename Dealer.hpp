@@ -17,8 +17,8 @@ public:
   ~Dealer();
 
   std::string getName() const;
-  //int getSum() const;
+  int getSum() const;
   void setup();
-  void checkTotal();
+  void checkResult(int playerSum);
 };
 #endif

@@ -5,13 +5,14 @@
 class Game
 {
 private:
-  int result;
+  int playerResult;
+  int dealerResult;
 
 public:
-  Game(int result = 0);
+  Game(int playerResult = 0, int dealerResult = 0);
   ~Game();
 
   void checkScore(int sum);
-  void checkWinner(int sum);
+  void checkWinner();
 };
 #endif

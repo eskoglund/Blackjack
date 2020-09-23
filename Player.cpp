@@ -15,10 +15,10 @@ std::string Player::getName() const
   return this->name;
 }
 
-// int Player::getSum() const
-// {
-//   return this->sum;
-// }
+int Player::getSum() const
+{
+  return this->sum;
+}
 void Player::setup()
 {
   for (size_t i = 0; i < 2; i++)
@@ -33,7 +33,7 @@ void Player::keepPlaying()
   char decision;
   while (this->sum < 21)
   {
-    std::cout << "Hit(h) or stay(s)?" << std::endl;
+    std::cout << "Hit(h) or stand(s)?" << std::endl;
     std::cin >> decision;
     if (decision == 'h')
     {
