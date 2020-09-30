@@ -1,7 +1,5 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
-#include "Cards.hpp"
-#include "Game.hpp"
 #include <string>
 
 class Player
@@ -9,8 +7,6 @@ class Player
 private:
   std::string name;
   int sum;
-  Cards cards;
-  Game game;
 
 public:
   Player(std::string name = "Player");
@@ -18,7 +14,7 @@ public:
 
   std::string getName() const;
   int getSum() const;
-  void setup();
-  void keepPlaying();
+  void addScore(int score);
+  
 };
 #endif

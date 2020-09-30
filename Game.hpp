@@ -1,18 +1,27 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 #include <iostream>
+#include "Cards.hpp"
+#include "Player.hpp"
+#include "Dealer.hpp"
 
 class Game
 {
 private:
-  int playerResult;
-  int dealerResult;
+  Cards deck;
+  Player player;
+  Dealer dealer;
 
 public:
-  Game(int playerResult = 0, int dealerResult = 0);
+  Game();
   ~Game();
 
+  void playerSetup();
+  void dealerSetup();
+  void keepPlaying();
+  void dealerResult();
   void checkScore(int sum);
   void checkWinner();
+
 };
 #endif

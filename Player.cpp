@@ -19,31 +19,8 @@ int Player::getSum() const
 {
   return this->sum;
 }
-void Player::setup()
-{
-  for (size_t i = 0; i < 2; i++)
-  {
-    this->sum += this->cards.drawCard();
-  }
-  this->game.checkScore(this->sum);
-}
 
-void Player::keepPlaying()
+void Player::addScore(int score)
 {
-  char decision;
-  while (this->sum < 21)
-  {
-    std::cout << "Hit(h) or stand(s)?" << std::endl;
-    std::cin >> decision;
-    if (decision == 'h')
-    {
-      this->sum += this->cards.drawCard();
-      this->game.checkScore(this->sum);
-    }
-    else if (decision == 's')
-    {
-      this->game.checkScore(this->sum);
-      break;
-    }
-  }
+  this->sum += score;
 }

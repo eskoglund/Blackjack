@@ -1,13 +1,66 @@
 #include "Game.hpp"
 
-Game::Game(int playerResult, int dealerResult)
+Game::Game()
 {
-  this->playerResult = playerResult;
-  this->dealerResult = dealerResult;
 }
-
 Game::~Game()
 {
+}
+
+void Game::playerSetup()
+{
+  std::cout << player.getName() << " starting hand:" << std::endl;
+  for (int i = 0; i < 2; i++)
+  {
+    this->player.addScore(this->deck.drawCard(this->player.getSum()));
+  }
+  checkScore(this->player.getSum());
+}
+
+void Game::dealerSetup()
+{
+  std::cout << dealer.getName() << " starting hand:" << std::endl;
+  this->dealer.addScore(this->deck.drawCard(this->dealer.getSum()));
+  checkScore(this->dealer.getSum());
+}
+
+void Game::keepPlaying()
+{
+  char decision;
+  std::cout << std::endl << this->player.getName() << std::endl;
+  checkScore(this->player.getSum());
+  while (this->player.getSum() < 21)
+  {
+    std::cout << "Hit(h) or stand(s)?" << std::endl;
+    std::cin >> decision;
+    if (decision == 'h')
+    {
+      this->player.addScore(this->deck.drawCard(this->player.getSum()));
+      checkScore(this->player.getSum());
+    }
+    else if (decision == 's')
+    {
+      checkScore(this->player.getSum());
+      break;
+    }
+  }
+}
+
+void Game::dealerResult()
+{
+  std::cout << std::endl << this->dealer.getName() << std::endl;
+  if (this->player.getSum() > 21)
+  {
+    std::cout << this->dealer.getName() << " wins." << std::endl;
+  }
+  else
+  {
+    while (this->dealer.getSum() < 17)
+    {
+      this->dealer.addScore(this->deck.drawCard(this->dealer.getSum()));
+    }
+    checkScore(this->dealer.getSum());
+  }
 }
 
 void Game::checkScore(int sum)
@@ -30,23 +83,23 @@ void Game::checkScore(int sum)
 
 void Game::checkWinner()
 {
-  if (this->playerResult <= 21 && this->dealerResult > 21)
+  if (this->player.getSum() <= 21 && this->dealer.getSum() > 21)
   {
-    std::cout << "Player wins." << std::endl;
+    std::cout << this->player.getName() << " wins." << std::endl;
   }
-  if (this->playerResult <= 21 && this->dealerResult <= 21)
+  if (this->player.getSum() <= 21 && this->dealer.getSum() <= 21)
   {
-    if (this->playerResult > this->dealerResult)
+    if (this->player.getSum() > this->dealer.getSum())
     {
-      std::cout << "Player wins." << std::endl;
+      std::cout << this->player.getName() << " wins." << std::endl;
     }
-    else if (this->dealerResult > this->playerResult)
+    else if (this->dealer.getSum() > this->player.getSum())
     {
-      std::cout << "Dealer wins." << std::endl;
+      std::cout << this->dealer.getName() << " wins." << std::endl;
     }
     else
     {
-      std::cout << "It's a tie." << std::endl;
+      std::cout << "Stand off!" << std::endl;
     }
   }
 }
