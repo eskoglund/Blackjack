@@ -9,7 +9,7 @@ class Game
 {
 private:
   Cards deck;
-  Player player;
+  Player *player;
   Dealer dealer;
 
 public:

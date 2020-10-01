@@ -4,6 +4,7 @@ Dealer::Dealer(std::string name)
 {
   this->name = name;
   this->sum = 0;
+  this->bet = 0;
 }
 
 Dealer::~Dealer()
@@ -23,4 +24,14 @@ int Dealer::getSum() const
 void Dealer::addScore(int score)
 {
   this->sum += score;
+}
+
+void registerBet(int amount)
+{
+  this->bet = amount * 2;
+}
+
+int getBet() const
+{
+  return this->bet;
 }

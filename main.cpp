@@ -26,10 +26,10 @@ int main() {
   //cards.drawCard();
   Game game;
   game.playerSetup();
-  game.dealerSetup();
-  game.keepPlaying();
-  game.dealerResult();
-  game.checkWinner();
+  //game.dealerSetup();
+  //game.keepPlaying();
+  //game.dealerResult();
+  //game.checkWinner();
 
   return 0;
 }

@@ -2,19 +2,32 @@
 
 Game::Game()
 {
+  this->player = new Player("Henry", 100);
 }
 Game::~Game()
 {
+  delete player;
 }
 
 void Game::playerSetup()
 {
-  std::cout << player.getName() << " starting hand:" << std::endl;
-  for (int i = 0; i < 2; i++)
+  int bet = 0;
+  if (this->player->getMoney() > 0)
   {
-    this->player.addScore(this->deck.drawCard(this->player.getSum()));
+    std::cout << "How much do you want to bet?" << std::endl;
+    std::cin >> bet;
+    std::cin.ignore();
+    if (bet <= this->player->getMoney())
+    {
+      /* code */
+    }
+    std::cout << this->player->getName() << " starting hand:" << std::endl;
+    for (int i = 0; i < 2; i++)
+    {
+      this->player->addScore(this->deck.drawCard(this->player->getSum()));
+    }
+    checkScore(this->player->getSum());
   }
-  checkScore(this->player.getSum());
 }
 
 void Game::dealerSetup()
@@ -24,44 +37,44 @@ void Game::dealerSetup()
   checkScore(this->dealer.getSum());
 }
 
-void Game::keepPlaying()
-{
-  char decision;
-  std::cout << std::endl << this->player.getName() << std::endl;
-  checkScore(this->player.getSum());
-  while (this->player.getSum() < 21)
-  {
-    std::cout << "Hit(h) or stand(s)?" << std::endl;
-    std::cin >> decision;
-    if (decision == 'h')
-    {
-      this->player.addScore(this->deck.drawCard(this->player.getSum()));
-      checkScore(this->player.getSum());
-    }
-    else if (decision == 's')
-    {
-      checkScore(this->player.getSum());
-      break;
-    }
-  }
-}
-
-void Game::dealerResult()
-{
-  std::cout << std::endl << this->dealer.getName() << std::endl;
-  if (this->player.getSum() > 21)
-  {
-    std::cout << this->dealer.getName() << " wins." << std::endl;
-  }
-  else
-  {
-    while (this->dealer.getSum() < 17)
-    {
-      this->dealer.addScore(this->deck.drawCard(this->dealer.getSum()));
-    }
-    checkScore(this->dealer.getSum());
-  }
-}
+// void Game::keepPlaying()
+// {
+//   char decision;
+//   std::cout << std::endl << this->player.getName() << std::endl;
+//   checkScore(this->player.getSum());
+//   while (this->player.getSum() < 21)
+//   {
+//     std::cout << "Hit(h) or stand(s)?" << std::endl;
+//     std::cin >> decision;
+//     if (decision == 'h')
+//     {
+//       this->player.addScore(this->deck.drawCard(this->player.getSum()));
+//       checkScore(this->player.getSum());
+//     }
+//     else if (decision == 's')
+//     {
+//       checkScore(this->player.getSum());
+//       break;
+//     }
+//   }
+// }
+//
+// void Game::dealerResult()
+// {
+//   std::cout << std::endl << this->dealer.getName() << std::endl;
+//   if (this->player.getSum() > 21)
+//   {
+//     std::cout << this->dealer.getName() << " wins." << std::endl;
+//   }
+//   else
+//   {
+//     while (this->dealer.getSum() < 17)
+//     {
+//       this->dealer.addScore(this->deck.drawCard(this->dealer.getSum()));
+//     }
+//     checkScore(this->dealer.getSum());
+//   }
+// }
 
 void Game::checkScore(int sum)
 {
@@ -81,25 +94,25 @@ void Game::checkScore(int sum)
   }
 }
 
-void Game::checkWinner()
-{
-  if (this->player.getSum() <= 21 && this->dealer.getSum() > 21)
-  {
-    std::cout << this->player.getName() << " wins." << std::endl;
-  }
-  if (this->player.getSum() <= 21 && this->dealer.getSum() <= 21)
-  {
-    if (this->player.getSum() > this->dealer.getSum())
-    {
-      std::cout << this->player.getName() << " wins." << std::endl;
-    }
-    else if (this->dealer.getSum() > this->player.getSum())
-    {
-      std::cout << this->dealer.getName() << " wins." << std::endl;
-    }
-    else
-    {
-      std::cout << "Stand off!" << std::endl;
-    }
-  }
-}
+// void Game::checkWinner()
+// {
+//   if (this->player.getSum() <= 21 && this->dealer.getSum() > 21)
+//   {
+//     std::cout << this->player.getName() << " wins." << std::endl;
+//   }
+//   if (this->player.getSum() <= 21 && this->dealer.getSum() <= 21)
+//   {
+//     if (this->player.getSum() > this->dealer.getSum())
+//     {
+//       std::cout << this->player.getName() << " wins." << std::endl;
+//     }
+//     else if (this->dealer.getSum() > this->player.getSum())
+//     {
+//       std::cout << this->dealer.getName() << " wins." << std::endl;
+//     }
+//     else
+//     {
+//       std::cout << "Stand off!" << std::endl;
+//     }
+//   }
+// }

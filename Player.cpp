@@ -1,8 +1,9 @@
 #include "Player.hpp"
 
-Player::Player(std::string name)
+Player::Player(std::string name, int money)
 {
   this->name = name;
+  this->money = money;
   this->sum = 0;
 }
 
@@ -23,4 +24,19 @@ int Player::getSum() const
 void Player::addScore(int score)
 {
   this->sum += score;
+}
+
+int Player::getMoney() const
+{
+  return this->money;
+}
+
+void Player::betMoney(int bet)
+{
+  this->money -= bet;
+}
+
+void Player::wonMoney(int amount)
+{
+  this->money += amount;
 }

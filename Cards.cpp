@@ -45,6 +45,7 @@ int Cards::drawCard(int sum)
     {
       *currentCard = 1;
       returnedCard = *currentCard;
+      std::cout << "Over" << std::endl;
     }
   }
 
