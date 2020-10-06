@@ -2,7 +2,6 @@
 
 Cards::Cards()
 {
-  this->nrOfAces = 0;
   for (int i = 2; i < 15; i++)
   {
     for (int k = 0; k < 4; k++)
@@ -32,21 +31,10 @@ int Cards::drawCard(int sum)
   this->cardDeck.erase(currentCard);
   returnedCard = *currentCard;
 
-  if (*currentCard == 11 && this->nrOfAces > 0)
+  if (*currentCard == 11 && sum + *currentCard > 21)
   {
     *currentCard = 1;
     returnedCard = *currentCard;
-    this->nrOfAces = 0;
-  }
-  if (*currentCard == 11)
-  {
-    this->nrOfAces++;
-    if (sum + *currentCard > 21)
-    {
-      *currentCard = 1;
-      returnedCard = *currentCard;
-      std::cout << "Over" << std::endl;
-    }
   }
 
   return returnedCard;

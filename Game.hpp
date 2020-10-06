@@ -9,13 +9,15 @@ class Game
 {
 private:
   Cards deck;
-  Player *player;
-  Dealer dealer;
+  Player* *player;
+  Player dealer;
+  int nrOfPlayers;
 
 public:
   Game();
   ~Game();
 
+  void addPlayer(std::string name);
   void playerSetup();
   void dealerSetup();
   void keepPlaying();
