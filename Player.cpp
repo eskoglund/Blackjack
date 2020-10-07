@@ -3,8 +3,9 @@
 Player::Player(std::string name)
 {
   this->name = name;
-  //this->money = money;
   this->sum = 0;
+  this->nrOfCards = 0;
+  //this->money = money;
 }
 
 Player::~Player()
@@ -24,8 +25,13 @@ int Player::getSum() const
 void Player::addScore(int score)
 {
   this->sum += score;
+  this->nrOfCards++;
 }
 
+int Player::getCards() const
+{
+  return this->nrOfCards;
+}
 // int Player::getMoney() const
 // {
 //   return this->money;

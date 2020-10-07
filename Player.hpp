@@ -7,6 +7,7 @@ class Player
 private:
   std::string name;
   int sum;
+  int nrOfCards;
   //int money;
 
 public:
@@ -16,6 +17,7 @@ public:
   std::string getName() const;
   int getSum() const;
   void addScore(int score);
+  int getCards() const;
   //int getMoney() const;
   //void betMoney(int bet);
   //void wonMoney(int amount);

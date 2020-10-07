@@ -1,7 +1,5 @@
 #include "Player.hpp"
 #include "Player.cpp"
-#include "Dealer.hpp"
-#include "Dealer.cpp"
 #include "Cards.hpp"
 #include "Cards.cpp"
 #include "Game.hpp"
@@ -14,8 +12,7 @@ int main() {
   game.addPlayer("Sarah");
   game.addPlayer("Henry");
   game.playerSetup();
-  game.dealerSetup();
-  game.keepPlaying();
+  game.play();
   game.dealerResult();
   game.checkWinner();
 

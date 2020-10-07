@@ -3,7 +3,6 @@
 #include <iostream>
 #include "Cards.hpp"
 #include "Player.hpp"
-#include "Dealer.hpp"
 
 class Game
 {
@@ -19,8 +18,7 @@ public:
 
   void addPlayer(std::string name);
   void playerSetup();
-  void dealerSetup();
-  void keepPlaying();
+  void play();
   void dealerResult();
   void checkScore(int sum);
   void checkWinner();

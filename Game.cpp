@@ -7,7 +7,7 @@ Game::Game()
 }
 Game::~Game()
 {
-  for (int i = 0; i < this->nrOfPlayers; i++)
+  for (int i = 0; i <= this->nrOfPlayers; i++)
   {
     if (this->player[i] != nullptr)
     {
@@ -23,7 +23,7 @@ void Game::addPlayer(std::string name)
 
 void Game::playerSetup()
 {
-  for (int i = 1; i <= this->nrOfPlayers; i++)
+  for (int i = this->nrOfPlayers; i >= 0; i--)
   {
     std::cout << this->player[i]->getName() << "'s" << " starting hand:" << std::endl;
     this->player[i]->addScore(this->deck.drawCard(this->player[i]->getSum()));
@@ -31,28 +31,36 @@ void Game::playerSetup()
   }
 }
 
-void Game::dealerSetup()
-{
-  std::cout << this->player[0]->getName() << "'s" << " starting hand:" << std::endl;
-  this->player[0]->addScore(this->deck.drawCard(this->player[0]->getSum()));
-  checkScore(this->player[0]->getSum());
-}
-
-void Game::keepPlaying()
+void Game::play()
 {
   char decision;
-  for (int i = 1; i <= this->nrOfPlayers; i++)
+  for (int i = this->nrOfPlayers; i > 0; i--)
   {
     std::cout << std::endl << this->player[i]->getName() << std::endl;
+    this->player[i]->addScore(this->deck.drawCard(this->player[i]->getSum()));
     checkScore(this->player[i]->getSum());
     while (this->player[i]->getSum() < 21)
     {
-      std::cout << "Hit(h) or stand(s)?" << std::endl;
-      std::cin >> decision;
+      if (this->player[i]->getCards() == 2)
+      {
+        std::cout << "Hit(h), stand(s) or double down(d)?" << std::endl;
+        std::cin >> decision;
+      }
+      else
+      {
+        std::cout << "Hit(h) or stand(s)?" << std::endl;
+        std::cin >> decision;
+      }
       if (decision == 'h')
       {
         this->player[i]->addScore(this->deck.drawCard(this->player[i]->getSum()));
         checkScore(this->player[i]->getSum());
+      }
+      else if (decision == 'd' && this->player[i]->getCards() == 2)
+      {
+        this->player[i]->addScore(this->deck.drawCard(this->player[i]->getSum()));
+        checkScore(this->player[i]->getSum());
+        break;
       }
       else if (decision == 's')
       {
@@ -94,7 +102,7 @@ void Game::checkScore(int sum)
   }
   else if (sum == 21)
   {
-    std::cout << "Final Result: " << sum << std::endl;
+    std::cout << "Final result: " << sum << std::endl;
     std::cout << "Blackjack!" << std::endl;
   }
   else
@@ -119,11 +127,11 @@ void Game::checkWinner()
       }
       else if (this->player[0]->getSum() > this->player[i]->getSum())
       {
-        std::cout << this->player[i]->getName() << " looses." << std::endl;
+        std::cout << this->player[i]->getName() << " loses." << std::endl;
       }
       else
       {
-        std::cout << this->player[i]->getName() << " is stand off with " << this->player[0]->getName() << "." << std::endl;
+        std::cout << this->player[i]->getName() << " is tied with " << this->player[0]->getName() << "." << std::endl;
       }
     }
   }

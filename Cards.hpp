@@ -1,6 +1,6 @@
 #ifndef CARDS_HPP
 #define CARDS_HPP
-#include <iostream>
+//#include <iostream>
 #include <algorithm>
 #include <random>
 #include <vector>
@@ -11,7 +11,7 @@ class Cards
 {
 private:
   std::vector<int> cardDeck;
-  int nrOfAces;
+  int nrOf;
 
 public:
   Cards();
