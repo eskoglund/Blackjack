@@ -1,20 +1,18 @@
 #ifndef CARDS_HPP
 #define CARDS_HPP
-//#include <iostream>
 #include <algorithm>
 #include <random>
 #include <vector>
 #include <chrono>
-//using namespace std;
 
 class Cards
 {
 private:
   std::vector<int> cardDeck;
-  int nrOf;
+  int nrOfDecks;
 
 public:
-  Cards();
+  Cards(int decks = 1);
   ~Cards();
 
   int drawCard(int sum);

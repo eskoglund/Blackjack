@@ -1,11 +1,11 @@
 #include "Player.hpp"
 
-Player::Player(std::string name)
+Player::Player(std::string name/*, int money*/)
 {
   this->name = name;
+  //this->money = money;
   this->sum = 0;
   this->nrOfCards = 0;
-  //this->money = money;
 }
 
 Player::~Player()
@@ -32,11 +32,12 @@ int Player::getCards() const
 {
   return this->nrOfCards;
 }
+
 // int Player::getMoney() const
 // {
 //   return this->money;
 // }
-//
+
 // void Player::betMoney(int bet)
 // {
 //   this->money -= bet;
@@ -44,5 +45,5 @@ int Player::getCards() const
 //
 // void Player::wonMoney(int amount)
 // {
-//   this->money += amount;
+//   this->money += amount * 2;
 // }

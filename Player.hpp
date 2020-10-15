@@ -11,7 +11,7 @@ private:
   //int money;
 
 public:
-  Player(std::string name = "Player");
+  Player(std::string name = "Player"/*, int money = 0*/);
   ~Player();
 
   std::string getName() const;

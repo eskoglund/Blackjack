@@ -1,10 +1,11 @@
 #include "Cards.hpp"
 
-Cards::Cards()
+Cards::Cards(int decks)
 {
+  this->nrOfDecks = decks;
   for (int i = 2; i < 15; i++)
   {
-    for (int k = 0; k < 4; k++)
+    for (int k = 0; k < 4 * this->nrOfDecks; k++)
     {
       if (i > 11)
       {

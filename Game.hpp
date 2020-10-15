@@ -9,19 +9,20 @@ class Game
 private:
   Cards deck;
   Player* *player;
-  Player dealer;
   int nrOfPlayers;
+  Player plays;
 
 public:
   Game();
   ~Game();
 
-  void addPlayer(std::string name);
+  void addPlayer(std::string name/*, int money*/);
   void playerSetup();
   void play();
   void dealerResult();
   void checkScore(int sum);
   void checkWinner();
+  //bool bet(int playerBet);
 
 };
 #endif

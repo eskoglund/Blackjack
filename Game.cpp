@@ -5,6 +5,7 @@ Game::Game()
   this->player[0] = new Player("Dealer");
   this->nrOfPlayers = 0;
 }
+
 Game::~Game()
 {
   for (int i = 0; i <= this->nrOfPlayers; i++)
@@ -16,9 +17,9 @@ Game::~Game()
   }
 }
 
-void Game::addPlayer(std::string name)
+void Game::addPlayer(std::string name/*, int money*/)
 {
-  this->player[++this->nrOfPlayers] = new Player(name);
+  this->player[++this->nrOfPlayers] = new Player(name/*, money*/);
 }
 
 void Game::playerSetup()
@@ -34,9 +35,16 @@ void Game::playerSetup()
 void Game::play()
 {
   char decision;
+  //int playerBet = 0;
+
   for (int i = this->nrOfPlayers; i > 0; i--)
   {
     std::cout << std::endl << this->player[i]->getName() << std::endl;
+    //std::cout << "How much do you want to bet?" << std::endl;
+    //std::cin >> playerBet;
+    //std::cin.ignore();
+    //if (bet(playerBet))
+    //{
     this->player[i]->addScore(this->deck.drawCard(this->player[i]->getSum()));
     checkScore(this->player[i]->getSum());
     while (this->player[i]->getSum() < 21)
@@ -68,12 +76,14 @@ void Game::play()
         break;
       }
     }
+    //}
   }
 }
 
 void Game::dealerResult()
 {
   int lost = 0;
+
   for (int i = 1; i <= this->nrOfPlayers; i++)
   {
     if (this->player[i]->getSum() > 21)
@@ -136,3 +146,24 @@ void Game::checkWinner()
     }
   }
 }
+
+// bool Game::bet(int playerBet)
+// {
+//   bool money = false;
+//
+//   for (int i = this->nrOfPlayers; i > 0; i--)
+//   {
+//     if (this->player[i]->getMoney() < 0 || playerBet > this->player[i]->getMoney())
+//     {
+//       std::cout << "Insufficient amount." << std::endl;
+//       std::cout << "Remaining amount: " << this->player[i]->getMoney() << std::endl;
+//     }
+//     else
+//     {
+//       this->player[i]->betMoney(playerBet);
+//       money= true;
+//     }
+//   }
+//
+//   return money;
+// }
